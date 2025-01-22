@@ -4000,13 +4000,13 @@ pub fn getnCompressedTexImage(_target: GLenum, _lod: GLint, _bufSize: GLsizei, _
     return @call(.always_tail, function_pointers.glGetnCompressedTexImage, .{ _target, _lod, _bufSize, _pixels });
 }
 
-pub fn getnTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnTexImage, .{ _target, _level, _format, _type, _bufSize, _pixels });
-}
+// pub fn getnTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+//     return @call(.always_tail, function_pointers.glGetnTexImage, .{ _target, _level, _format, _type, _bufSize, _pixels });
+// }
 
-pub fn getnUniformdv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnUniformdv, .{ _program, _location, _bufSize, _params });
-}
+// pub fn getnUniformdv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void {
+//     return @call(.always_tail, function_pointers.glGetnUniformdv, .{ _program, _location, _bufSize, _params });
+// }
 
 pub fn getnUniformfv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.C) void {
     return @call(.always_tail, function_pointers.glGetnUniformfv, .{ _program, _location, _bufSize, _params });
@@ -7908,18 +7908,18 @@ pub fn load(load_ctx: anytype, get_proc_address: fn (@TypeOf(load_ctx), [:0]cons
         log.err("entry point glGetnCompressedTexImage not found!", .{});
         success = false;
     }
-    if (get_proc_address(load_ctx, "glGetnTexImage")) |proc| {
-        function_pointers.glGetnTexImage = @as(@TypeOf(function_pointers.glGetnTexImage), @ptrCast(proc));
-    } else {
-        log.err("entry point glGetnTexImage not found!", .{});
-        success = false;
-    }
-    if (get_proc_address(load_ctx, "glGetnUniformdv")) |proc| {
-        function_pointers.glGetnUniformdv = @as(@TypeOf(function_pointers.glGetnUniformdv), @ptrCast(proc));
-    } else {
-        log.err("entry point glGetnUniformdv not found!", .{});
-        success = false;
-    }
+    // if (get_proc_address(load_ctx, "glGetnTexImage")) |proc| {
+    //     function_pointers.glGetnTexImage = @as(@TypeOf(function_pointers.glGetnTexImage), @ptrCast(proc));
+    // } else {
+    //     log.err("entry point glGetnTexImage not found!", .{});
+    //     success = false;
+    // }
+    // if (get_proc_address(load_ctx, "glGetnUniformdv")) |proc| {
+    //     function_pointers.glGetnUniformdv = @as(@TypeOf(function_pointers.glGetnUniformdv), @ptrCast(proc));
+    // } else {
+    //     log.err("entry point glGetnUniformdv not found!", .{});
+    //     success = false;
+    // }
     if (get_proc_address(load_ctx, "glGetnUniformfv")) |proc| {
         function_pointers.glGetnUniformfv = @as(@TypeOf(function_pointers.glGetnUniformfv), @ptrCast(proc));
     } else {
@@ -8601,8 +8601,8 @@ const function_signatures = struct {
     const glGetCompressedTextureSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
     const glGetGraphicsResetStatus = fn () callconv(.C) GLenum;
     const glGetnCompressedTexImage = fn (_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetnTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetnUniformdv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void;
+    // const glGetnTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
+    // const glGetnUniformdv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void;
     const glGetnUniformfv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.C) void;
     const glGetnUniformiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.C) void;
     const glGetnUniformuiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.C) void;
@@ -9257,8 +9257,8 @@ const function_pointers = struct {
     var glGetCompressedTextureSubImage: *const function_signatures.glGetCompressedTextureSubImage = undefined;
     var glGetGraphicsResetStatus: *const function_signatures.glGetGraphicsResetStatus = undefined;
     var glGetnCompressedTexImage: *const function_signatures.glGetnCompressedTexImage = undefined;
-    var glGetnTexImage: *const function_signatures.glGetnTexImage = undefined;
-    var glGetnUniformdv: *const function_signatures.glGetnUniformdv = undefined;
+    // var glGetnTexImage: *const function_signatures.glGetnTexImage = undefined;
+    // var glGetnUniformdv: *const function_signatures.glGetnUniformdv = undefined;
     var glGetnUniformfv: *const function_signatures.glGetnUniformfv = undefined;
     var glGetnUniformiv: *const function_signatures.glGetnUniformiv = undefined;
     var glGetnUniformuiv: *const function_signatures.glGetnUniformuiv = undefined;

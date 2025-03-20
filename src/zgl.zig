@@ -1622,6 +1622,12 @@ pub const TextureTarget = enum(types.Enum) {
     buffer = binding.TEXTURE_BUFFER,
     @"2d_multisample" = binding.TEXTURE_2D_MULTISAMPLE,
     @"2d_multisample_array" = binding.TEXTURE_2D_MULTISAMPLE_ARRAY,
+    cube_map_positive_x = binding.TEXTURE_CUBE_MAP_POSITIVE_X,
+    cube_map_negative_x = binding.TEXTURE_CUBE_MAP_NEGATIVE_X,
+    cube_map_positive_y = binding.TEXTURE_CUBE_MAP_POSITIVE_Y,
+    cube_map_negative_y = binding.TEXTURE_CUBE_MAP_NEGATIVE_Y,
+    cube_map_positive_z = binding.TEXTURE_CUBE_MAP_POSITIVE_Z,
+    cube_map_negative_z = binding.TEXTURE_CUBE_MAP_NEGATIVE_Z,
 };
 
 pub fn genTexture() types.Texture {

@@ -1062,6 +1062,20 @@ pub fn programUniform1i(program: types.Program, location: ?u32, value: i32) void
     }
 }
 
+pub fn programUniform2ui(program: types.Program, location: ?u32, x: u32, y: u32) void {
+    if (location) |loc| {
+        binding.programUniform2ui(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y);
+        checkError();
+    }
+}
+
+pub fn programUniform2i(program: types.Program, location: ?u32, v0: i32, v1: i32) void {
+    if (location) |loc| {
+        binding.programUniform2i(@intFromEnum(program), @as(types.Int, @intCast(loc)), v0, v1);
+        checkError();
+    }
+}
+
 pub fn programUniform3ui(program: types.Program, location: ?u32, x: u32, y: u32, z: u32) void {
     if (location) |loc| {
         binding.programUniform3ui(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z);
@@ -1076,9 +1090,16 @@ pub fn programUniform3i(program: types.Program, location: ?u32, x: i32, y: i32, 
     }
 }
 
-pub fn programUniform2i(program: types.Program, location: ?u32, v0: i32, v1: i32) void {
+pub fn programUniform4ui(program: types.Program, location: ?u32, x: u32, y: u32, z: u32, w: u32) void {
     if (location) |loc| {
-        binding.programUniform2i(@intFromEnum(program), @as(types.Int, @intCast(loc)), v0, v1);
+        binding.programUniform4ui(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z, w);
+        checkError();
+    }
+}
+
+pub fn programUniform4i(program: types.Program, location: ?u32, x: i32, y: i32, z: i32, w: i32) void {
+    if (location) |loc| {
+        binding.programUniform4i(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z, w);
         checkError();
     }
 }
@@ -1107,6 +1128,62 @@ pub fn programUniform3f(program: types.Program, location: ?u32, x: f32, y: f32, 
 pub fn programUniform4f(program: types.Program, location: ?u32, x: f32, y: f32, z: f32, w: f32) void {
     if (location) |loc| {
         binding.programUniform4f(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z, w);
+        checkError();
+    }
+}
+
+pub fn programUniform1d(program: types.Program, location: ?u32, value: f64) void {
+    if (location) |loc| {
+        binding.programUniform1d(@intFromEnum(program), @as(types.Int, @intCast(loc)), value);
+        checkError();
+    }
+}
+
+pub fn programUniform2d(program: types.Program, location: ?u32, x: f64, y: f64) void {
+    if (location) |loc| {
+        binding.programUniform2d(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y);
+        checkError();
+    }
+}
+
+pub fn programUniform3d(program: types.Program, location: ?u32, x: f64, y: f64, z: f64) void {
+    if (location) |loc| {
+        binding.programUniform3d(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z);
+        checkError();
+    }
+}
+
+pub fn programUniform4d(program: types.Program, location: ?u32, x: f64, y: f64, z: f64, w: f64) void {
+    if (location) |loc| {
+        binding.programUniform4d(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z, w);
+        checkError();
+    }
+}
+
+pub fn programUniformMatrix2(program: types.Program, location: ?u32, transpose: bool, items: []const [2][2]f32) void {
+    if (location) |loc| {
+        binding.programUniformMatrix2fv(
+            @intFromEnum(program),
+            @as(types.Int, @intCast(loc)),
+            cs2gl(items.len),
+            b2gl(transpose),
+
+            @as(*const f32, @ptrCast(items.ptr)),
+        );
+        checkError();
+    }
+}
+
+pub fn programUniformMatrix3(program: types.Program, location: ?u32, transpose: bool, items: []const [3][3]f32) void {
+    if (location) |loc| {
+        binding.programUniformMatrix3fv(
+            @intFromEnum(program),
+            @as(types.Int, @intCast(loc)),
+            cs2gl(items.len),
+            b2gl(transpose),
+
+            @as(*const f32, @ptrCast(items.ptr)),
+        );
         checkError();
     }
 }

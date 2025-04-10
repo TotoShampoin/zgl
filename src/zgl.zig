@@ -1046,6 +1046,35 @@ pub fn useProgramStages(pipeline: types.ProgramPipeline, stages: ProgramStagesFl
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Compute program
+
+pub fn dispatchCompute(num_groups_x: u32, num_groups_y: u32, num_groups_z: u32) void {
+    binding.dispatchCompute(@intCast(num_groups_x), @intCast(num_groups_y), @intCast(num_groups_z));
+}
+
+pub const MemoryBarrier = enum(types.Enum) {
+    vertex_attrib_array_barrier_bit = binding.GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT,
+    element_array_barrier_bit = binding.GL_ELEMENT_ARRAY_BARRIER_BIT,
+    uniform_barrier_bit = binding.GL_UNIFORM_BARRIER_BIT,
+    texture_fetch_barrier_bit = binding.GL_TEXTURE_FETCH_BARRIER_BIT,
+    shader_image_access_barrier_bit = binding.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT,
+    command_barrier_bit = binding.GL_COMMAND_BARRIER_BIT,
+    pixel_buffer_barrier_bit = binding.GL_PIXEL_BUFFER_BARRIER_BIT,
+    texture_update_barrier_bit = binding.GL_TEXTURE_UPDATE_BARRIER_BIT,
+    buffer_update_barrier_bit = binding.GL_BUFFER_UPDATE_BARRIER_BIT,
+    client_mapped_buffer_barrier_bit = binding.GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT,
+    framebuffer_barrier_bit = binding.GL_FRAMEBUFFER_BARRIER_BIT,
+    transform_feedback_barrier_bit = binding.GL_TRANSFORM_FEEDBACK_BARRIER_BIT,
+    atomic_counter_barrier_bit = binding.GL_ATOMIC_COUNTER_BARRIER_BIT,
+    shader_storage_barrier_bit = binding.GL_SHADER_STORAGE_BARRIER_BIT,
+    query_buffer_barrier_bit = binding.GL_QUERY_BUFFER_BARRIER_BIT,
+};
+
+pub fn memoryBarrier(barrier: MemoryBarrier) void {
+    binding.memoryBarrier(@intFromEnum(barrier));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
 pub fn programUniform1ui(program: types.Program, location: ?u32, value: u32) void {
